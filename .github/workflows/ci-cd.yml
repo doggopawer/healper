@@ -24,6 +24,8 @@ jobs:
                   sudo apt-get install docker-compose -y
 
             - name: Build and push Docker images
+              env:
+                REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
               run: |
                   echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
                   docker-compose -f docker-compose.yml build
