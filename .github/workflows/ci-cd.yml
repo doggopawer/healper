@@ -19,12 +19,17 @@ jobs:
             - name: Set up Node.js
               uses: actions/setup-node@v2
               with:
-                  node-version: '16' # 로컬 환경과 동일한 Node.js 버전 설정
+                  node-version: '16'
+
+            - name: Verify directory structure
+              run: |
+                  ls -l
+                  ls -l frontend  # frontend 디렉토리의 내용 확인
 
             - name: Install dependencies
               run: |
                   cd frontend
-                  npm install # frontend 디렉토리로 이동하여 의존성 설치
+                  npm install
 
             - name: Set up Docker
               run: |
@@ -34,7 +39,7 @@ jobs:
             - name: Build and push Docker images
               run: |
                   echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
-                  docker-compose -f docker-compose.yml build --no-cache # --no-cache를 추가하여 캐시 사용 방지
+                  docker-compose -f docker-compose.yml build --no-cache
                   docker-compose -f docker-compose.yml push
 
     deploy:
