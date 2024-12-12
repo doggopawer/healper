@@ -50,7 +50,7 @@ jobs:
 
             - name: Copy docker-compose.yml to server
               run: |
-                  scp -i my-key.pem -o StrictHostKeyChecking=no docker-compose.yml ubuntu@43.202.106.124:/home/ubuntu/your_project/  
+                  scp -i my-key.pem -o StrictHostKeyChecking=no docker-compose.yml ubuntu@43.202.106.124:/home/ubuntu/  
 
             - name: Deploy to server
               env:
