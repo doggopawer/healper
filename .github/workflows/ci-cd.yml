@@ -85,7 +85,7 @@ jobs:
                       # (여기에 Nginx 설정 파일 복사 명령어 추가)
 
                       # Pull 최신 Docker 이미지
-                      #sudo docker-compose -f /home/ubuntu/docker-compose.yml down
+                      sudo docker-compose -f /home/ubuntu/docker-compose.yml pull
                       
                       # 컨테이너 재시작
                       sudo docker-compose -f /home/ubuntu/docker-compose.yml up -d
