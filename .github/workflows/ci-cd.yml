@@ -71,13 +71,14 @@ jobs:
               run: |
                   ssh -i my-key.pem -o StrictHostKeyChecking=no ubuntu@43.202.106.124 << 'EOF'
                       # SSL 인증서 파일 생성
-                      echo "${{ secrets.FULL_CHAIN }}" > /etc/letsencrypt/live/www.healper.shop/fullchain.pem
-                      chmod 400 /etc/letsencrypt/live/www.healper.shop/fullchain.pem
-                      echo "${{ secrets.PRIV_KEY }}" > /etc/letsencrypt/live/www.healper.shop/privkey.pem
-                      chmod 400 /etc/letsencrypt/live/www.healper.shop/privkey.pem
+                      echo "${{ secrets.FULL_CHAIN }}" | sudo tee /etc/letsencrypt/live/www.healper.shop/fullchain.pem > /dev/null
+                      sudo chmod 400 /etc/letsencrypt/live/www.healper.shop/fullchain.pem
+                      echo "${{ secrets.PRIV_KEY }}" | sudo tee /etc/letsencrypt/live/www.healper.shop/privkey.pem > /dev/null
+                      sudo chmod 400 /etc/letsencrypt/live/www.healper.shop/privkey.pem
 
                       # Nginx 설정 파일 복사
-                      
+                      # (여기에 Nginx 설정 파일 복사 명령어 추가)
+
                       # Pull 최신 Docker 이미지
                       sudo docker-compose -f /home/ubuntu/docker-compose.yml pull
                       
@@ -87,3 +88,4 @@ jobs:
                       # 로그 남기기
                       sudo docker-compose -f /home/ubuntu/zdocker-compose.yml logs
                   EOF
+
