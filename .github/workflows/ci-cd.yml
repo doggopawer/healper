@@ -91,6 +91,6 @@ jobs:
                       sudo docker-compose -f /home/ubuntu/docker-compose.yml up -d
 
                       # 로그 남기기
-                      sudo docker-compose -f /home/ubuntu/zdocker-compose.yml logs
+                      sudo docker-compose -f /home/ubuntu/docker-compose.yml logs
                   EOF
 
