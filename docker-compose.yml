@@ -5,6 +5,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    image: doggopawer/healper-frontend:latest  # 이미지 이름 추가
     volumes:
       - ./frontend/build:/usr/share/nginx/html
 
@@ -25,8 +26,8 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    image: doggopawer/healper-backend:latest  # 이미지 이름 추가
     volumes:
       - ./backend:/usr/src/app
     ports:
       - "4000:4000"
-    
