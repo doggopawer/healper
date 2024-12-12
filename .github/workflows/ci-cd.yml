@@ -42,6 +42,11 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v2
 
+            - name: Set up Docker
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install docker-compose -y
+
             - name: Create SSH PEM file
               run: echo "${{ secrets.MY_PEM_FILE }}" > my-key.pem
 
