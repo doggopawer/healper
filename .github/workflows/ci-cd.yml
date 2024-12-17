@@ -48,6 +48,10 @@ jobs:
             - name: Set permissions for PEM file
               run: chmod 400 my-key.pem
 
+            - name: List files
+              run: ls -R ./frontend
+
+
             - name: Copy docker-compose.yml to server
               run: |
                   scp -i my-key.pem -o StrictHostKeyChecking=no docker-compose.yml ubuntu@43.202.106.124:/home/ubuntu/
