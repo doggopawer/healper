@@ -41,6 +41,8 @@ jobs:
         steps:
             - name: Checkout code
               uses: actions/checkout@v2
+              with:
+                ref: main
 
             - name: Create SSH PEM file
               run: echo "${{ secrets.MY_PEM_FILE }}" > my-key.pem
@@ -49,7 +51,7 @@ jobs:
               run: chmod 400 my-key.pem
 
             - name: List files
-              run: ls -R ./frontend
+              run: ls -R .
 
 
             - name: Copy docker-compose.yml to server
