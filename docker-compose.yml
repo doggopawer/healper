@@ -46,11 +46,15 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     image: doggopawer/healper-frontend:latest
+    environment:
+      - NODE_OPTIONS=--max-old-space-size=204
     volumes:
       - ./frontend/build:/app/build # 빌드 결과물을 /app/build에 마운트
-
   nginx:
-    image: nginx:alpine
+    build:
+        context: ./nginx
+        dockerfile: Dockerfile
+    image: doggopawer/healper-nginx:latest
     ports:
       - "80:80"
       - "443:443"  # HTTPS 포트 추가
@@ -64,7 +68,5 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     image: doggopawer/healper-backend:latest # 이미지 이름 추가
-    # volumes:
-    #   - ./backend:/usr/src/app
     ports:
       - "4000:4000"
