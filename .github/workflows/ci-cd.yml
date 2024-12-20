@@ -86,13 +86,13 @@ jobs:
             - name: Deploy to server
               run: |
                   ssh -i my-key.pem -o StrictHostKeyChecking=no ubuntu@43.202.106.124 << 'EOF'
-                      # Pull 최신 Docker 이미지
-                      sudo docker-compose -f /home/ubuntu/docker-compose.yml pull
-                      
+                      # 최신 Docker 이미지 Pull
+                      sudo docker-compose pull
+                      # 컨테이너 중지
+                      sudo docker-compose down
                       # 컨테이너 재시작
-                      sudo docker-compose -f /home/ubuntu/docker-compose.yml up -d
-
+                      sudo docker-compose up -d
                       # 로그 남기기
-                      sudo docker-compose -f /home/ubuntu/docker-compose.yml logs
+                      sudo docker-compose logs
                   EOF
 
