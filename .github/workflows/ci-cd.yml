@@ -29,8 +29,7 @@ jobs:
             - name: Create .env file
               run: |
                   echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}" > frontend/.env
-                  echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}" > backend/.env
-                  echo "DB_USER=${{ secrets.DB_USER }}" >> backend/.env
+                  echo "DB_USER=${{ secrets.DB_USER }}" > backend/.env
                   echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> backend/.env
                   echo "JWT_SECRET_KEY=${{ secrets.JWT_SECRET_KEY }}" >> backend/.env
                   echo "JWT_EXPIRES_IN=${{ secrets.JWT_EXPIRES_IN }}" >> backend/.env
@@ -45,6 +44,13 @@ jobs:
                   echo "AWS_REGION=${{ secrets.AWS_REGION }}" >> backend/.env
                   echo "AWS_BUCKET_NAME=${{ secrets.AWS_BUCKET_NAME }}" >> backend/.env
 
+            - name: Display .env file contents
+              run: |
+                  echo "Contents of frontend/.env:"
+                  cat frontend/.env
+                  echo "Contents of backend/.env:"
+                  cat backend/.env
+      
             - name: Build and push Docker images
               env:
                 REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
