@@ -26,6 +26,10 @@ jobs:
                   sudo apt-get update
                   sudo apt-get install docker-compose -y
 
+            - name: Create .env file
+              run: |
+                  echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}" > frontend/.env 
+
             - name: Build and push Docker images
               env:
                 REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
