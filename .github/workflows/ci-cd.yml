@@ -48,6 +48,7 @@ jobs:
                   echo "APPLE_REDIRECT_URL=${{ secrets.APPLE_REDIRECT_URL }}" >> backend/.env
                   echo "APPLE_PRIVATE_KEY=${{ secrets.APPLE_PRIVATE_KEY }}" >> backend/.env
                   echo "APPLE_TEAM_ID=${{ secrets.APPLE_TEAM_ID }}" >> backend/.env
+                  echo "APPLE_PRIVATE_KEY_FILE_NAME=${{ secrets.APPLE_PRIVATE_KEY_FILE_NAME }}" >> backend/.env
                   echo "${{ secrets.APPLE_PRIVATE_KEY }}" > "backend/${{ secrets.APPLE_PRIVATE_KEY_FILE_NAME }}"
 
             - name: Display .env file contents
